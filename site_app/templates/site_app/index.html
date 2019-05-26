@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- Классы navbar и navbar-default -->
+<nav class="navbar navbar-default navbar-static-top">
+    <!-- Контейнер -->
+    <div class="container-fluid">
+        <!-- Заголовок -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+        <!-- Основная часть меню -->
+        <div class="collapse navbar-collapse" id="navbar-main">
+
+            <!-- Содержимое основной части -->
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Ссылка 1 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Ссылка 2</a></li>
+                <li><a href="#">Ссылка 3</a></li>
+                <li><a href="#">Ссылка 4</a></li>
+                <li><a href="#">Ссылка 5</a></li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+{% block content %}
+{% endblock %}
+</body>
+</html>

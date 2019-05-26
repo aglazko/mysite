@@ -1,22 +1,20 @@
-<!DOCTYPE html>
+
+{% extends 'site_app/index.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="{% static 'bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    {% for place in flats %}
-    <div>
-        <h1>{{ place.heading }}</h1>
-        <p>District: {{ place.district }}</p>
-        <p>Cost of m2: {{ place.cost_of_place }}</p>
-        <p>Elevator: {{ place.elevator }}</p>
-        <p>Description: {{ place.description }}</p>
-        <p>Total size: {{ place.total_size }}</p>
-        <p>Living size: </p>
+
+{% block content %}
+<div class="row">
+    <div class="row">
+        <div class="col-md-4"><a href="#"><img src="{% static "s11.png" %}"></a></div>
+        <div class="col-md-8"><a href="#" id="A">hfgdfhfdhkfhvd kfhvkfdfhnfk dvfkjdvhn dfkjvdkfjvnkdjvv kjfvjkfkjv fhkjfdhhfgdfh fdhkfh vdkfhvk88 fdfhnf kdvfkjdv hndfkjvd</a></div>
     </div>
-    {% endfor %}
-</body>
-</html>
+    <div class="row">
+        <div class="col-md-4"><a href="#"><img src="{% static "s11.png" %}"></a></div>
+        <div class="col-md-8"><a href="#" id="A">hfgdfhfdhkfhvd kfhvkfdfhnfk dvfkjdvhn dfkjvdkfjvnkdjvv kjfvjkfkjv fhkjfdhhfgdfh fdhkfh vdkfhvk88 fdfhnf kdvfkjdv hndfkjvd</a></div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"><a href="#"><img src="{% static "s11.png" %}"></a></div>
+        <div class="col-md-8"><a href="#" id="A">hfgdfhfdhkfhvd kfhvkfdfhnfk dvfkjdvhn dfkjvdkfjvnkdjvv kjfvjkfkjv fhkjfdhhfgdfh fdhkfh vdkfhvk88 fdfhnf kdvfkjdv hndfkjvd</a></div>
+    </div>
+</div>
+{% endblock %}
