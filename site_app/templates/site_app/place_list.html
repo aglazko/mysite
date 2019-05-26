@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% for place in flats %}
+    <div>
+        <h1>{{ place.heading }}</h1>
+        <p>District: {{ place.district }}</p>
+        <p>Cost of m2: {{ place.cost_of_place }}</p>
+        <p>Elevator: {{ place.elevator }}</p>
+        <p>Description: {{ place.description }}</p>
+        <p>Total size: {{ place.total_size }}</p>
+        <p>Living size: </p>
+    </div>
+    {% endfor %}
+</body>
+</html>
