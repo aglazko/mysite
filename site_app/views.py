@@ -44,11 +44,14 @@ def flat_list(request):
 
 def room_get(request, room_id):
     room = get_object_or_404(models.Room, id=room_id)
+    return render(request, 'site_app/room.html', {'room': room})
 
 
 def house_get(request, house_id):
     house = get_object_or_404(models.House, id=house_id)
+    return render(request, 'site_app/house.html', {'house': house})
 
 
 def flat_get(request, flat_id):
     flat = get_object_or_404(models.Flat, id=flat_id)
+    return render(request, 'site_app/flat.html', {'flat': flat})
