@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <!-- Заголовок -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Brand</a>
+            <a class="navbar-brand" href="#"><i class="fas fa-home fa-lg">Sweet home</i></a>
         </div>
         <!-- Основная часть меню -->
         <div class="collapse navbar-collapse" id="navbar-main">
@@ -35,9 +35,14 @@
         </div>
     </div>
 </nav>
-<i class="fa fa-handshake-o" aria-hidden="true"></i>
 
 {% block content %}
+<div class="row">
+    <div class="row">
+        <a href="{% url 'place_list' %}" class="ppp"><div style="font-size: 500px" id="ic">
+            <i class="fas fa-home fa-lg"></i>
+            <p id="heads">Press to start</p>
+        </div></a></div></div>
 {% endblock %}
 </body>
 </html>

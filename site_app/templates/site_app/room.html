@@ -24,4 +24,16 @@
         </div>
     </div>
 </div>
+{% if user.is_admin and not room.is_approved %}
+<div class="row" id="log_div">
+    <div class="row">
+        <form method="GET">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.path }}">
+            <button type="submit" formaction="{{ request.path }}approve" class="btn btn-danger">
+                Approve
+            </button>
+        </form>
+    </div></div>
+{% endif %}
 {%endblock%}
