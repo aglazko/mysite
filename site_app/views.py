@@ -146,7 +146,7 @@ def profile(request):
     return render(request, 'site_app/profile.html', {'form': form})
 
 
-@user_passes_test(helper.is_realtor)
+@user_passes_test(helper.is_realtor, '/')
 def room_update(request, id):
     room = get_object_or_404(models.Room, id=id)
     if request.method == "POST":
@@ -159,7 +159,7 @@ def room_update(request, id):
     return render(request, 'site_app/room_create.html', {'form': form})
 
 
-@user_passes_test(helper.is_realtor)
+@user_passes_test(helper.is_realtor, '/')
 def flat_update(request, id):
     flat = get_object_or_404(models.Flat, id=id)
     if request.method == "POST":
@@ -172,7 +172,7 @@ def flat_update(request, id):
     return render(request, 'site_app/flat_create.html', {'form': form})
 
 
-@user_passes_test(helper.is_realtor)
+@user_passes_test(helper.is_realtor, login_url='/')
 def house_update(request, id):
     house = get_object_or_404(models.House, id=id)
     if request.method == "POST":
@@ -185,12 +185,19 @@ def house_update(request, id):
     return render(request, 'site_app/house_create.html', {'form': form})
 
 
-@user_passes_test(helper.is_normal_user)
+@user_passes_test(helper.is_normal_user, login_url='/')
 def contract_list(request):
     contracts = models.Contract.objects.filter(user=request.user)
     return render(request, 'site_app/contract_list.html', {'contracts': contracts})
 
 
+@user_passes_test(lambda user: user.is_realtor, login_url='/')
+def realtor_contract_list(request):
+    contracts = models.Contract.objects.filter(placement__realtor__username=request.user)
+    return render(request, 'site_app/contract_list.html', {'contracts': contracts})
+
+
+@user_passes_test(helper.is_normal_user, login_url='/')
 def contract_create(request, type_, id):
     model = PLACEMENTS[type_]
     place = get_object_or_404(model, id=id)
@@ -198,3 +205,11 @@ def contract_create(request, type_, id):
     mapper = get_object_or_404(models.RealtorPlacement, **{placement_type: place})
     models.Contract.create(user=request.user, placement=mapper, placement_type=placement_type)
     return redirect(reverse(index))
+
+
+@user_passes_test(lambda user: user.is_realtor, login_url='/')
+def contract_approve(request, id):
+    contract = get_object_or_404(models.Contract, id=id)
+    contract.is_approved = True
+    contract.save()
+    return redirect(reverse(realtor_contract_list))

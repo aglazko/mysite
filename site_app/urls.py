@@ -20,6 +20,7 @@ urlpatterns = [
     path('flats/<int:id>/update/', views.flat_update, name='flat_update'),
     path('houses/<int:id>/update/', views.house_update, name='house_update'),
     path('contracts/', views.contract_list, name='contract_list'),
+    path('realtor_contracts/', views.realtor_contract_list, name='realtor_contract_list'),
     path('<type_>/<int:id>/contract', views.contract_create, name='contract_create'),
-    # path('contracts/<int:id>/approve', views.contract_approve, name='contract_approve')
+    path('contracts/<int:id>/approve', views.contract_approve, name='contract_approve')
 ]
