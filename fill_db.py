@@ -35,10 +35,10 @@ def main():
         outdoors_size='100')
 
     room = models.Room.objects.create(
-        heading='Normal room', district='Center', cost='20', description="Normal room", room_size='15', floor='3',
+        heading='Normal room', district='Center', cost='20', description="Normal room", size='15', floor='3',
         total_rooms='5', is_approved=True)
     models.Room.objects.create(
-        heading='Bad room', district='Holodna Hora', cost='10', description="Bad room", room_size='3', floor='5',
+        heading='Bad room', district='Holodna Hora', cost='10', description="Bad room", size='3', floor='5',
         total_rooms='2')
 
     models.RealtorPlacement.objects.create(realtor=realtor, flat=flat)

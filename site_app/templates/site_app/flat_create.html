@@ -1,5 +1,124 @@
+{% extends 'site_app/index.html' %}
+{% load static %}
+{% block content %}
+<div class="row" id="log_div">
+    <div class="row">
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Create Flat</button>
+    <div class="row align-items-center" id="cr_bor">
+        <div class="col-xs-6" id="ri">
+            <p>Heading</p>
+        </div>
+        <div class="col-xs-6" id="le">
+            {{ form.heading }}
+        </div>
+    </div>
+    <div class="row align-items-center" id="cr_bor">
+        <div class="col-xs-6" id="ri">
+            <p>District</p>
+        </div>
+        <div class="col-xs-6" id="le">
+            {{ form.district }}
+        </div>
+    </div>
+    <div class="row align-items-center" id="cr_bor">
+        <div class="col-xs-6" id="ri">
+            <p>Cost</p>
+        </div>
+        <div class="col-xs-6" id="le">
+            {{ form.cost }}
+        </div>
+    </div>
+    <div class="row align-items-center" id="cr_bor">
+        <div class="col-xs-6" id="ri">
+            <p>Description</p>
+        </div>
+        <div class="col-xs-6" id="le">
+            {{ form.description }}
+        </div>
+    </div>
+    <div class="row align-items-center" id="cr_bor">
+        <div class="col-xs-6" id="ri">
+            <p>Image</p>
+        </div>
+        <div class="col-xs-6" id="le">
+            {{ form.image }}
+        </div>
+    </div>
+    <div class="row align-items-center" id="cr_bor">
+        <div class="col-xs-6" id="ri">
+            <p>Owner contract</p>
+        </div>
+        <div class="col-xs-6" id="le">
+            {{ form.owner_contract }}
+        </div>
+    </div>
+    <div class="row align-items-center" id="cr_bor">
+        <div class="col-xs-6" id="ri">
+            <p>Is free</p>
+        </div>
+        <div class="col-xs-6" id="le">
+            {{ form.is_free }}
+        </div>
+    </div>
+    <div class="row align-items-center" id="cr_bor">
+        <div class="col-xs-6" id="ri">
+            <p>End date</p>
+        </div>
+        <div class="col-xs-6" id="le">
+            {{ form.end_date }}
+        </div>
+    </div>
+    <div class="row align-items-center" id="cr_bor">
+        <div class="col-xs-6" id="ri">
+            <p>Total size:</p>
+        </div>
+        <div class="col-xs-6" id="le">
+            {{ form.total_size }}
+        </div>
+    </div>
+    <div class="row align-items-center" id="cr_bor">
+        <div class="col-xs-6" id="ri">
+            <p>Living size</p>
+        </div>
+        <div class="col-xs-6" id="le">
+            {{ form.living_size }}
+        </div>
+    </div>
+    <div class="row align-items-center" id="cr_bor">
+        <div class="col-xs-6" id="ri">
+            <p>Kitchen size</p>
+        </div>
+        <div class="col-xs-6" id="le">
+            {{ form.kitchen_size }}
+        </div>
+    </div>
+    <div class="row align-items-center" id="cr_bor">
+        <div class="col-xs-6" id="ri">
+            <p>Count of rooms</p>
+        </div>
+        <div class="col-xs-6" id="le">
+            {{ form.rooms_count }}
+        </div>
+    </div>
+    <div class="row align-items-center" id="cr_bor">
+        <div class="col-xs-6" id="ri">
+            <p>Floor</p>
+        </div>
+        <div class="col-xs-6" id="le">
+            {{ form.floor }}
+        </div>
+    </div>
+    <div class="row align-items-center" id="cr_bor">
+        <div class="col-xs-6" id="ri">
+            <p>Elevator</p>
+        </div>
+        <div class="col-xs-6" id="le">
+            {{ form.elevator }}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-danger">Create Flat</button>
 </form>
+    </div>
+</div>
+{% endblock %}

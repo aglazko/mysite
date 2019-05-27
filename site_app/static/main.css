@@ -162,3 +162,22 @@ img{
 .lin{
     font-size: xx-large;
 }
+
+/*create*/
+#le{
+    text-align: left;
+    font-family: 'Spectral SC', serif;
+    font-size: medium;
+    color: #5C5C5C;
+}
+#ri{
+    text-align: right;
+}
+#ri p{
+    font-family: 'Spectral SC', serif;
+    font-size: x-large;
+    color: #5C5C5C;
+}
+#cr_bor{
+    border-color: white;
+}
