@@ -1,0 +1,29 @@
+{% extends 'site_app/index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row" id="room_div">
+    <div class="row">
+        <div class="row"id="bor">
+            <p id="room_head">{{flat.heading}}</p>
+        </div>
+        <div class="row" id="bor">
+            <img src="{{ flat.image.url }}" id="one_pic">
+        </div>
+        <div class="row" id="bor">
+            <p id="desc">Описание:</p><br>
+            <p class="other">{{flat.description}}</p><br>
+            <p id="desc">Особенности:</p><br>
+            <p class="other">Район:{{flat.district}}</p><br>
+            <p class="other">Цена:{{flat.cost}}</p><br>
+            <p class="other">Статус:{{flat.is_free}}</p><br>
+            <p class="other">Дата окончания текущей аренды:{{flat.end_date}}</p><br>
+            <p class="other">Общая площадь:{{flat.total_size}}</p><br>
+            <p class="other">Жилая площадь:{{flat.living_size}}</p><br>
+            <p class="other">Размер кухни:{{flat.kitchen_size}}</p><br>
+            <p class="other">Количество комнат:{{flat.rooms_count}}</p><br>
+            <p class="other">Лифт:{% if flat.elevator %} есть {% else %} нет {% endif %}</p><br>
+        </div>
+    </div>
+</div>
+{%endblock%}

@@ -2,6 +2,7 @@
 {% load static %}
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Spectral+SC&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'main.css' %}">
@@ -23,11 +24,12 @@
 
             <!-- Содержимое основной части -->
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Ссылка 1 <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Ссылка 2</a></li>
-                <li><a href="#">Ссылка 3</a></li>
-                <li><a href="#">Ссылка 4</a></li>
-                <li><a href="#">Ссылка 5</a></li>
+                <li><a href="{% url 'place_list' %}">Placements</a></li>
+                <li><a href="{% url 'flat_list' %}">Flats</a></li>
+                <li><a href="{% url 'house_list' %}">Houses</a></li>
+                <li><a href="{% url 'room_list' %}">Rooms</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">{% if user.is_authenticated %}Logout{% else %}Login{% endif %}</a></li>
             </ul>
 
         </div>

@@ -1,0 +1,27 @@
+{% extends 'site_app/index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row" id="room_div">
+    <div class="row">
+        <div class="row"id="bor">
+            <p id="room_head">{{house.heading}}</p>
+        </div>
+        <div class="row" id="bor">
+            <img src="{{ house.image.url }}" id="one_pic">
+        </div>
+        <div class="row" id="bor">
+            <p id="desc">Описание:</p><br>
+            <p class="other">{{house.description}}</p><br>
+            <p id="desc">Особенности:</p><br>
+            <p class="other">Район:{{house.district}}</p><br>
+            <p class="other">Цена:{{house.cost}}</p><br>
+            <p class="other">Статус:{{house.is_free}}</p><br>
+            <p class="other">Дата окончания текущей аренды:{{house.end_date}}</p><br>
+            <p class="other">Размер дома:{{house.house_size}}</p><br>
+            <p class="other">Размер двора:{{house.outdoors_size}}</p><br>
+            <p class="other">Гараж:{% if house.garage %} есть {% else %} нет{% endif %}</p><br>
+        </div>
+    </div>
+</div>
+{%endblock%}
