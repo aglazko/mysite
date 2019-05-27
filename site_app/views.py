@@ -1,9 +1,9 @@
 import random
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from . import models
 from . import helper
-
+from . import forms
 # Create your views here.
 
 
@@ -58,4 +58,33 @@ def flat_get(request, flat_id):
 
 
 def flat_create(request):
-    pass
+    if request.method == "POST":
+        form = forms.FlatForm(request.POST, request.FILES)
+        if form.is_valid():
+            flat = form.save()
+            return redirect(reverse(flat.get_url(), args=[flat.id]))
+    else:
+        form = forms.FlatForm()
+    return render(request, 'site_app/flat_create.html', {'form': form})
+
+
+def room_create(request):
+    if request.method == "POST":
+        form = forms.RoomForm(request.POST, request.FILES)
+        if form.is_valid():
+            room = form.save()
+            return redirect(reverse(room.get_url(), args=[room.id]))
+    else:
+        form = forms.FlatForm()
+    return render(request, 'site_app/room_create.html', {'form': form})
+
+
+def house_create(request):
+    if request.method == "POST":
+        form = forms.FlatForm(request.POST, request.FILES)
+        if form.is_valid():
+            house = form.save()
+            return redirect(reverse(house.get_url(), args=[house.id]))
+    else:
+        form = forms.FlatForm()
+    return render(request, 'site_app/house_create.html', {'form': form})
