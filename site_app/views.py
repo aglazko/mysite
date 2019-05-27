@@ -55,3 +55,7 @@ def house_get(request, house_id):
 def flat_get(request, flat_id):
     flat = get_object_or_404(models.Flat, id=flat_id)
     return render(request, 'site_app/flat.html', {'flat': flat})
+
+
+def flat_create(request):
+    pass
