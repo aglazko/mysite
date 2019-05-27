@@ -194,7 +194,7 @@ def contract_list(request):
 @user_passes_test(lambda user: user.is_realtor, login_url='/')
 def realtor_contract_list(request):
     contracts = models.Contract.objects.filter(placement__realtor__username=request.user)
-    return render(request, 'site_app/contract_list.html', {'contracts': contracts})
+    return render(request, 'site_app/realtor_contract_list.html', {'contracts': contracts})
 
 
 @user_passes_test(helper.is_normal_user, login_url='/')
@@ -204,7 +204,7 @@ def contract_create(request, type_, id):
     placement_type = type_.lower()
     mapper = get_object_or_404(models.RealtorPlacement, **{placement_type: place})
     models.Contract.create(user=request.user, placement=mapper, placement_type=placement_type)
-    return redirect(reverse(index))
+    return redirect(reverse(contract_list))
 
 
 @user_passes_test(lambda user: user.is_realtor, login_url='/')
