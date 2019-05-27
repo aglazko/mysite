@@ -1,4 +1,3 @@
-
 {% extends 'site_app/index.html' %}
 {% load static %}
 
@@ -6,8 +5,13 @@
 <div class="row">
     {% for placement in placements %}
     <div class="row">
-        <div class="col-md-4"><a href="#"><img src="{{ placement.image.url }}"></a></div>
-        <div class="col-md-8"><a href="#" id="A">{{ placement.heading }}</a></div>
+        <div class="col-md-2"><a href="#"><img src="{{ placement.image.url }}"></a><div class="row" id="cost">{{ placement.cost }}</div></div>
+        <div class="col-md-8">
+            <a href="#" id="A">
+                <p id="heads">{{ placement.heading }}</p><br>
+                <p id="descrip">{{ placement.description }}</p>
+            </a>
+        </div>
     </div>
     {% endfor %}
 </div>

@@ -17,8 +17,12 @@ img{
     height: 100%;
     object-fit: contain;
 }
+.navbar.navbar-default{
+    border-color: #5C5C5C;;
+}
 .container-fluid{
-    background-color: #ffecf9;
+    background-color: #ffd9fd;
+
 }
 .row .row{
     background-color: #ffecf9;
@@ -35,7 +39,30 @@ img{
     text-decoration: none;
     color: #777;
 }
-#A:visited { text-decoration: none; color: #777;
-    font-family: 'Josefin Sans', sans-serif;;}
-#A:active { text-decoration: none; color: #777;
-    font-family: font-family: 'Josefin Sans', sans-serif;}
+#A:visited {
+    text-decoration: none;
+    color: #777;
+    font-family: 'Josefin Sans', sans-serif;
+}
+#A:active {
+    text-decoration: none;
+    color: #777;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+
+/*place list styles*/
+
+
+#heads{
+    color: #5C5C5C;
+    font-size: xx-large;
+}
+#descrip{
+    color: #929292;
+    font-size: large;
+}
+#cost{
+    border-style: none;
+    color: #ff9fef;
+}

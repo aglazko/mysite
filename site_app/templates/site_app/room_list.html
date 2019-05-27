@@ -1,0 +1,18 @@
+{% extends 'site_app/index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    {% for room in rooms %}
+    <div class="row">
+        <div class="row"><p id="heads">{{ room.heading }}</p></div>
+        <div class="row"><img src="{{ room.image.url }}"></div>
+        <div class="row"><p id="descrip">Описание:<br>{{ placement.description }}</p></div>
+        <div class="row">
+            <p>Особенности:</p><br>
+            <p></p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
