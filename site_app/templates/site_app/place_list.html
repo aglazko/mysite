@@ -4,17 +4,11 @@
 
 {% block content %}
 <div class="row">
+    {% for placement in placements %}
     <div class="row">
-        <div class="col-md-4"><a href="#"><img src="{% static "s11.png" %}"></a></div>
-        <div class="col-md-8"><a href="#" id="A">hfgdfhfdhkfhvd kfhvkfdfhnfk dvfkjdvhn dfkjvdkfjvnkdjvv kjfvjkfkjv fhkjfdhhfgdfh fdhkfh vdkfhvk88 fdfhnf kdvfkjdv hndfkjvd</a></div>
+        <div class="col-md-4"><a href="#"><img src="{{ placement.image.url }}"></a></div>
+        <div class="col-md-8"><a href="#" id="A">{{ placement.heading }}</a></div>
     </div>
-    <div class="row">
-        <div class="col-md-4"><a href="#"><img src="{% static "s11.png" %}"></a></div>
-        <div class="col-md-8"><a href="#" id="A">hfgdfhfdhkfhvd kfhvkfdfhnfk dvfkjdvhn dfkjvdkfjvnkdjvv kjfvjkfkjv fhkjfdhhfgdfh fdhkfh vdkfhvk88 fdfhnf kdvfkjdv hndfkjvd</a></div>
-    </div>
-    <div class="row">
-        <div class="col-md-4"><a href="#"><img src="{% static "s11.png" %}"></a></div>
-        <div class="col-md-8"><a href="#" id="A">hfgdfhfdhkfhvd kfhvkfdfhnfk dvfkjdvhn dfkjvdkfjvnkdjvv kjfvjkfkjv fhkjfdhhfgdfh fdhkfh vdkfhvk88 fdfhnf kdvfkjdv hndfkjvd</a></div>
-    </div>
+    {% endfor %}
 </div>
 {% endblock %}

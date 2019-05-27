@@ -2,4 +2,4 @@
 python manage.py dbshell < m.sql
 python manage.py makemigrations
 python manage.py migrate
-echo "from django.contrib.auth import get_user_model; get_user_model().objects.create_superuser('admin1234', 'gazmaket@gmail.com', 'sunday2018')" | python manage.py shell
+python fill_db.py

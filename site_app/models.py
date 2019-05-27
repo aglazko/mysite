@@ -10,7 +10,7 @@ class User(AbstractUser):
 
 
 def get_file_path(instance, filename, folder=""):
-    return os.path.join(instance.__class__.__name__, folder, filename)
+    return os.path.join(instance.__class__.__name__.lower(), folder, filename)
 
 
 def get_image_path(instance, filename):
@@ -23,22 +23,26 @@ class Placement(models.Model):
     id = models.AutoField(primary_key=True)
     heading = models.CharField(max_length=300)
     district = models.CharField(max_length=300)
-    elevator = models.BooleanField()
     cost = models.IntegerField()
     description = models.CharField(max_length=1000)
-    image = models.ImageField(upload_to=get_image_path, blank=True)
+    image = models.ImageField(upload_to=get_image_path, blank=True, default='default.png')
     owner_contract = models.FileField(upload_to=get_file_path, blank=True)
     is_free = models.BooleanField(default=True)
     end_date = models.DateField(blank=True, null=True)
+    is_approved = models.BooleanField(default=False)
 
     def __repr__(self):
         return self.heading
+
+    def get_type(self):
+        return self.__class__.__name__.lower()
 
 
 class Room(Placement):
     size = models.IntegerField()
     floor = models.IntegerField()
-    total_rooms = models.IntegerField
+    total_rooms = models.IntegerField()
+    elevator = models.BooleanField(default=False)
 
 
 class Flat(Placement):
@@ -47,11 +51,12 @@ class Flat(Placement):
     kitchen_size = models.IntegerField()
     rooms_count = models.IntegerField()
     floor = models.IntegerField()
+    elevator = models.BooleanField(default=False)
 
 
 class House(Placement):
     house_size = models.IntegerField()
-    garage = models.BooleanField()
+    garage = models.BooleanField(default=False)
     outdoors_size = models.IntegerField()
 
 
