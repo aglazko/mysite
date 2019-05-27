@@ -1,6 +1,6 @@
 import random
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from . import models
 from . import helper
 
@@ -43,12 +43,12 @@ def flat_list(request):
 
 
 def room_get(request, room_id):
-    pass
+    room = get_object_or_404(models.Room, id=room_id)
 
 
 def house_get(request, house_id):
-    pass
+    house = get_object_or_404(models.House, id=house_id)
 
 
 def flat_get(request, flat_id):
-    pass
+    flat = get_object_or_404(models.Flat, id=flat_id)

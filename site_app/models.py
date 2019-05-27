@@ -34,8 +34,8 @@ class Placement(models.Model):
     def __repr__(self):
         return self.heading
 
-    def get_type(self):
-        return self.__class__.__name__.lower()
+    def get_url(self):
+        return '{}_get'.format(self.__class__.__name__.lower())
 
 
 class Room(Placement):

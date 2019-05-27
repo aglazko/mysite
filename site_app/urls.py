@@ -1,14 +1,13 @@
-from django.conf.urls import url
+from django.urls import path
 from . import views
 
-
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'place_list/', views.placement_list, name='place_list'),
-    url(r'rooms/', views.room_list, name='room_list'),
-    url(r'houses/', views.house_list, name='house_list'),
-    url(r'flats/', views.flat_list, name='flat_list'),
-    url(r'rooms/<int:room_id>', views.room_get, name='room_get'),
-    url(r'houses/<int:house_id>', views.house_get, name='house_get'),
-    url(r'flats/<int:flat_id>', views.flat_get, name='flat_get'),
+    path('', views.index, name='index'),
+    path('place_list/', views.placement_list, name='place_list'),
+    path('rooms/<int:room_id>/', views.room_get, name='room_get'),
+    path('houses/<int:house_id>/', views.house_get, name='house_get'),
+    path('flats/<int:flat_id>/', views.flat_get, name='flat_get'),
+    path('rooms/', views.room_list, name='room_list'),
+    path('houses/', views.house_list, name='house_list'),
+    path('flats/', views.flat_list, name='flat_list'),
 ]
