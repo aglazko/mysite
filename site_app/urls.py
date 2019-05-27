@@ -16,4 +16,7 @@ urlpatterns = [
     path('create/room/', views.room_create, name='room_create'),
     path('create/house/', views.house_create, name='house_create'),
     path('<type_>/<int:id>/approve/', views.approve, name='approve'),
+    path('rooms/<int:id>/update/', views.room_update, name='room_update'),
+    path('flats/<int:id>/update/', views.flat_update, name='flat_update'),
+    path('houses/<int:id>/update/', views.house_update, name='house_update'),
 ]

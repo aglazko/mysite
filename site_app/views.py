@@ -144,4 +144,41 @@ def profile(request):
         form = forms.ProfileForm(instance=request.user)
     return render(request, 'site_app/profile.html', {'form': form})
 
-# def room_update(request):
+
+@user_passes_test(helper.is_realtor)
+def room_update(request, id):
+    room = get_object_or_404(models.Room, id=id)
+    if request.method == "POST":
+        form = forms.RoomForm(request.POST, request.FILES, instance=room)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse(room.get_url(), args=[room.id]))
+    else:
+        form = forms.RoomForm(instance=room)
+    return render(request, 'site_app/room_create.html', {'form': form})
+
+
+@user_passes_test(helper.is_realtor)
+def flat_update(request, id):
+    flat = get_object_or_404(models.Flat, id=id)
+    if request.method == "POST":
+        form = forms.FlatForm(request.POST, request.FILES, instance=flat)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse(flat.get_url(), args=[flat.id]))
+    else:
+        form = forms.FlatForm(instance=flat)
+    return render(request, 'site_app/flat_create.html', {'form': form})
+
+
+@user_passes_test(helper.is_realtor)
+def house_update(request, id):
+    house = get_object_or_404(models.House, id=id)
+    if request.method == "POST":
+        form = forms.HouseForm(request.POST, request.FILES, instance=house)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse(house.get_url(), args=[house.id]))
+    else:
+        form = forms.HouseForm(instance=house)
+    return render(request, 'site_app/house_create.html', {'form': form})
