@@ -38,4 +38,16 @@
 </form>
     </div></div>
 {% endif %}
+{% if user.is_admin or user.is_realtor %}
+{% with update_url=request.path|add:"update/" %}
+<div class="row" id="log_div">
+    <div class="row">
+        <form action="{{ update_url }}">
+        <button type="submit" class="btn btn-danger">
+        Change
+    </button>
+    </div>
+</div>
+{% endwith %}
+{% endif %}
 {%endblock%}
