@@ -1,0 +1,14 @@
+{% extends 'site_app/index.html' %}
+{% load static %}
+{% block content %}
+<div class="row" id="log_div">
+  <div class="row">
+    <p id="room_head">Login</p>
+    <form method="POST" id="form_log">
+      {% csrf_token %}
+      {{ form.as_p }}
+    <button type="submit" class="btn btn-danger">Login</button>
+</form>
+  </div>
+</div>
+{% endblock %}

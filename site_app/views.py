@@ -1,6 +1,6 @@
 import random
-
-from django.contrib.auth.decorators import user_passes_test
+from django.http import Http404
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from . import models
@@ -17,7 +17,6 @@ def place_list(request):
     return render(request, 'site_app/place_list.html')
 
 
-# TODO: check is_auth works
 def placement_list(request):
     place_types = [models.Flat, models.Room, models.House]
     filter_set = helper.get_placement_query(request)
@@ -46,16 +45,25 @@ def flat_list(request):
 
 def room_get(request, room_id):
     room = get_object_or_404(models.Room, id=room_id)
+    if not room.is_approved:
+        if (request.user.is_authenticated and not (request.user.is_admin or request.user.is_realtor)) or not request.user.is_authenticated:
+            raise Http404
     return render(request, 'site_app/room.html', {'room': room})
 
 
 def house_get(request, house_id):
     house = get_object_or_404(models.House, id=house_id)
+    if not house.is_approved:
+        if (request.user.is_authenticated and not (request.user.is_admin or request.user.is_realtor)) or not request.user.is_authenticated:
+            raise Http404
     return render(request, 'site_app/house.html', {'house': house})
 
 
 def flat_get(request, flat_id):
     flat = get_object_or_404(models.Flat, id=flat_id)
+    if not flat.is_approved:
+        if (request.user.is_authenticated and not (request.user.is_admin or request.user.is_realtor)) or not request.user.is_authenticated:
+            raise Http404
     return render(request, 'site_app/flat.html', {'flat': flat})
 
 
@@ -98,6 +106,17 @@ def house_create(request):
     return render(request, 'site_app/house_create.html', {'form': form})
 
 
+@user_passes_test(lambda user: user.is_admin, login_url='/')
+def approve(request, type_, id):
+    placements = {'rooms': models.Room, 'flats': models.Flat, 'houses': models.House}
+    model = placements[type_]
+    placement = get_object_or_404(model, id=id)
+    placement.is_approved = True
+    placement.save()
+    next = request.GET.get('next')
+    return redirect(next or reverse(index))
+
+
 def register(request):
     if request.method == 'POST':
         form = forms.RegistrationForm(request.POST)
@@ -113,11 +132,16 @@ def register(request):
     return render(request, 'site_app/register.html', {'form': form})
 
 
-def approve(request, type_, id):
-    placements = {'rooms': models.Room, 'flats': models.Flat, 'houses': models.House}
-    model = placements[type_]
-    placement = get_object_or_404(model, id=id)
-    placement.is_approved = True
-    placement.save()
-    next = request.GET.get('next')
-    return redirect(next or reverse(index))
+@login_required
+def profile(request):
+    instance = get_object_or_404(models.User, id=request.user.id)
+    if request.method == 'POST':
+        form = forms.ProfileForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse(index))
+    else:
+        form = forms.ProfileForm(instance=request.user)
+    return render(request, 'site_app/profile.html', {'form': form})
+
+# def room_update(request):
