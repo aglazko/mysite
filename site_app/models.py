@@ -77,8 +77,6 @@ class Contract(models.Model):
     def get_placement(self):
         return getattr(self.placement, self.placement_type)
 
-    def get_approve_url(self):
-        return 'contracts/{}/approve'.format(self.id)
 
 class PrivateMessage(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sender')
