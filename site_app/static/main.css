@@ -135,3 +135,30 @@ img{
     font-size: large;
     color: #777;
 }
+
+
+/*login*/
+
+
+#log_div{
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+
+
+
+}
+#log_div .row{
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+    text-align: center;
+
+}
+#form_log{
+    font-size: x-large;
+    color: #a34751;
+}
+.lin{
+    font-size: xx-large;
+}
