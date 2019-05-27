@@ -1,0 +1,22 @@
+{% extends 'site_app/index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row" id="log_div">
+    {% for contract in contracts %}
+    <div class="row">
+        {% with place=contract.get_placement %}
+        {% with placement_url=place.get_url %}
+        {% if contract.is_approved %}
+        <a href="{% url placement_url place.id %}">
+            <p id="room_head" style="color: mediumspringgreen">{{place.heading}}<br>Status: approved</p></a>
+        {% else %}
+        <a href="{% url placement_url place.id %}"><p id="room_head" style="color: orangered">{{place.heading}}<br>Status: not approved</p></a>
+        {% endif %}
+        {% endwith %}
+        {% endwith %}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
