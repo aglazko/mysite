@@ -49,6 +49,10 @@ img{
     color: #777;
     font-family: 'Josefin Sans', sans-serif;
 }
+/*#A:hover{*/
+    /*font-family: 'Josefin Sans', sans-serif;*/
+    /*color: #a34751;*/
+/*}*/
 
 
 /*place list styles*/
@@ -64,5 +68,26 @@ img{
 }
 #cost{
     border-style: none;
-    color: #ff9fef;
+    color: #c384ff;
+    font-size: xx-large;
+    text-align: center;
+}
+#cost a:hover{
+    color: #a34751;
+    font-family: 'Josefin Sans', sans-serif;
+}
+#cost a:visited{
+    text-decoration: none;
+    color: #c384ff;
+    font-family: 'Josefin Sans', sans-serif;
+}
+#cost a:active{
+    text-decoration: none;
+    color: #c384ff;
+    font-family: 'Josefin Sans', sans-serif;
+}
+#cost a:link{
+    text-decoration: none;
+    color: #c384ff;
+    font-family: 'Josefin Sans', sans-serif;
 }

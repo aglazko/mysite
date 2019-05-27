@@ -4,15 +4,19 @@
 {% block content %}
 <div class="row">
     {% for room in rooms %}
+    {% with room_url=room.get_url %}
     <div class="row">
-        <div class="row"><p id="heads">{{ room.heading }}</p></div>
-        <div class="row"><img src="{{ room.image.url }}"></div>
-        <div class="row"><p id="descrip">Описание:<br>{{ placement.description }}</p></div>
-        <div class="row">
-            <p>Особенности:</p><br>
-            <p></p>
+        <div class="col-md-2"><a href="{% url room_url room.id %}"><img src="{{ room.image.url }}"></a>
+            <div class="row" id="cost"><a href="{% url room_url room.id %}">{{ room.cost }} грн.</a></div>
+        </div>
+        <div class="col-md-8">
+            <a href="{% url room_url room.id %}" id="A">
+                <p id="heads">{{ room.heading }}</p><br>
+                <p id="descrip">{{ room.description }}</p>
+            </a>
         </div>
     </div>
+    {% endwith %}
     {% endfor %}
 </div>
 {% endblock %}

@@ -6,7 +6,9 @@
     {% for placement in placements %}
     {% with placement_url=placement.get_url %}
     <div class="row">
-        <div class="col-md-2"><a href="{% url placement_url placement.id %}"><img src="{{ placement.image.url }}"></a><div class="row" id="cost">{{ placement.cost }}</div></div>
+        <div class="col-md-2"><a href="{% url placement_url placement.id %}"><img src="{{ placement.image.url }}"></a>
+            <div class="row" id="cost"><a href="{% url placement_url placement.id %}">{{ placement.cost }} грн.</a></div>
+        </div>
         <div class="col-md-8">
             <a href="{% url placement_url placement.id %}" id="A">
                 <p id="heads">{{ placement.heading }}</p><br>

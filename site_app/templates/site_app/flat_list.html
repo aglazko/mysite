@@ -1,0 +1,22 @@
+{% extends 'site_app/index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    {% for flat in flats %}
+    {% with flat_url=flat.get_url %}
+    <div class="row">
+        <div class="col-md-2"><a href="{% url flat_url flat.id %}"><img src="{{ flat.image.url }}"></a>
+            <div class="row" id="cost"><a href="{% url flat_url flat.id %}">{{ flat.cost }} грн.</a></div>
+        </div>
+        <div class="col-md-8">
+            <a href="{% url flat_url flat.id %}" id="A">
+                <p id="heads">{{ flat.heading }}</p><br>
+                <p id="descrip">{{ flat.description }}</p>
+            </a>
+        </div>
+    </div>
+</div>
+{% endwith %}
+{% endfor %}
+{% endblock %}

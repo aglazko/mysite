@@ -1,0 +1,23 @@
+{% extends 'site_app/index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    {% for house in houses %}
+    {% with house_url=house.get_url %}
+    <div class="row">
+        <div class="col-md-2"><a href="{% url house_url house.id %}"><img src="{{ house.image.url }}"></a>
+            <div class="row" id="cost"><a href="{% url house_url house.id %}">{{ house.cost }} грн.</a></div>
+        </div>
+        <div class="col-md-8">
+            <a href="{% url house_url house.id %}" id="A">
+                <p id="heads">{{ house.heading }}</p><br>
+                <p id="descrip">{{ house.description }}</p>
+            </a>
+        </div>
+    </div>
+
+{% endwith %}
+{% endfor %}
+</div>
+{% endblock %}
