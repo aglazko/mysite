@@ -71,6 +71,7 @@ class RealtorPlacement(models.Model):
 class Contract(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
     placement = models.ForeignKey(RealtorPlacement, on_delete=models.CASCADE, related_name="placement")
+    is_approved = models.BooleanField(default=False)
 
 
 class PrivateMessage(models.Model):
