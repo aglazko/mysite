@@ -102,3 +102,7 @@ def get_flat_query(request):
         filter_set['living_size__lte'] = request.GET.get('living_size_less')
 
     return filter_set
+
+
+def is_realtor(user):
+    return user.is_authenticated and (user.is_admin or user.is_realtor)

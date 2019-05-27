@@ -1,5 +1,7 @@
 import random
 
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth import login, authenticate
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from . import models
 from . import helper
@@ -57,34 +59,55 @@ def flat_get(request, flat_id):
     return render(request, 'site_app/flat.html', {'flat': flat})
 
 
+@user_passes_test(helper.is_realtor)
 def flat_create(request):
     if request.method == "POST":
         form = forms.FlatForm(request.POST, request.FILES)
         if form.is_valid():
             flat = form.save()
+            models.RealtorPlacement.objects.create(realtor=request.user, flat=flat)
             return redirect(reverse(flat.get_url(), args=[flat.id]))
     else:
         form = forms.FlatForm()
     return render(request, 'site_app/flat_create.html', {'form': form})
 
 
+@user_passes_test(helper.is_realtor)
 def room_create(request):
     if request.method == "POST":
         form = forms.RoomForm(request.POST, request.FILES)
         if form.is_valid():
             room = form.save()
+            models.RealtorPlacement.objects.create(realtor=request.user, room=room)
             return redirect(reverse(room.get_url(), args=[room.id]))
     else:
-        form = forms.FlatForm()
+        form = forms.RoomForm()
     return render(request, 'site_app/room_create.html', {'form': form})
 
 
+@user_passes_test(helper.is_realtor)
 def house_create(request):
     if request.method == "POST":
-        form = forms.FlatForm(request.POST, request.FILES)
+        form = forms.HouseForm(request.POST, request.FILES)
         if form.is_valid():
             house = form.save()
+            models.RealtorPlacement.objects.create(realtor=request.user, house=house)
             return redirect(reverse(house.get_url(), args=[house.id]))
     else:
-        form = forms.FlatForm()
+        form = forms.HouseForm()
     return render(request, 'site_app/house_create.html', {'form': form})
+
+
+def register(request):
+    if request.method == 'POST':
+        form = forms.RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect(reverse(index))
+    else:
+        form = forms.RegistrationForm()
+    return render(request, 'site_app/register.html', {'form': form})

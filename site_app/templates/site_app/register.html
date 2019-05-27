@@ -1,0 +1,9 @@
+{% extends 'site_app/index.html' %}
+{% load static %}
+{% block content %}
+    <form method="post" id="form_log">
+      {% csrf_token %}
+      {{ form.as_p }}
+    <button type="submit" class="btn btn-danger">Register</button>
+</form>
+{% endblock %}
