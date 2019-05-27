@@ -117,6 +117,7 @@ def approve(request, type_, id):
     return redirect(next or reverse(index))
 
 
+@user_passes_test(lambda user: not user.is_authenticated, login_url='/')
 def register(request):
     if request.method == 'POST':
         form = forms.RegistrationForm(request.POST)
@@ -182,3 +183,9 @@ def house_update(request, id):
     else:
         form = forms.HouseForm(instance=house)
     return render(request, 'site_app/house_create.html', {'form': form})
+
+
+@user_passes_test(helper.is_normal_user)
+def contract_list(request):
+    contracts = models.Contract.objects.filter(user=request.user)
+    return render(request, 'site_app/contract_list', {'contracts': contracts})

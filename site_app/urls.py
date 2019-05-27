@@ -19,4 +19,5 @@ urlpatterns = [
     path('rooms/<int:id>/update/', views.room_update, name='room_update'),
     path('flats/<int:id>/update/', views.flat_update, name='flat_update'),
     path('houses/<int:id>/update/', views.house_update, name='house_update'),
+    path('contracts/', views.contract_list, name='contract_list'),
 ]

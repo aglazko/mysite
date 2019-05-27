@@ -106,3 +106,7 @@ def get_flat_query(request):
 
 def is_realtor(user):
     return user.is_authenticated and (user.is_admin or user.is_realtor)
+
+
+def is_normal_user(user):
+    return user.is_authenticated and not (user.is_admin or user.is_realtor)
