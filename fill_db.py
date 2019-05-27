@@ -12,8 +12,8 @@ User = get_user_model()
 
 def main():
     User.objects.create_superuser('admin1234', 'gazmaket@gmail.com', 'sunday2018', is_admin=True)
-    realtor = User.objects.create(username='ann', email='gazmaket@gmail.com', password='sunday2018', is_realtor=True)
-    user = User.objects.create(username='god', email='gazmaket@gmail.com', password='sunday2018')
+    realtor = User.objects.create_user(username='ann', email='gazmaket@gmail.com', password='sunday2018', is_realtor=True)
+    user = User.objects.create_user(username='god', email='gazmaket@gmail.com', password='sunday2018')
 
     flat = models.Flat.objects.create(
         heading='perfect flat', district='Naukova', cost='1234', description="Magic flat", total_size='1024',

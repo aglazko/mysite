@@ -14,4 +14,5 @@ urlpatterns = [
     path('create/flat/', views.flat_create, name='flat_create'),
     path('create/room/', views.room_create, name='room_create'),
     path('create/house/', views.house_create, name='house_create'),
+    path('<type_>/<int:id>/approve/', views.approve, name='approve'),
 ]

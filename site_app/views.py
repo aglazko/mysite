@@ -59,7 +59,7 @@ def flat_get(request, flat_id):
     return render(request, 'site_app/flat.html', {'flat': flat})
 
 
-@user_passes_test(helper.is_realtor)
+@user_passes_test(helper.is_realtor, login_url='/')
 def flat_create(request):
     if request.method == "POST":
         form = forms.FlatForm(request.POST, request.FILES)
@@ -72,7 +72,7 @@ def flat_create(request):
     return render(request, 'site_app/flat_create.html', {'form': form})
 
 
-@user_passes_test(helper.is_realtor)
+@user_passes_test(helper.is_realtor, login_url='/')
 def room_create(request):
     if request.method == "POST":
         form = forms.RoomForm(request.POST, request.FILES)
@@ -85,7 +85,7 @@ def room_create(request):
     return render(request, 'site_app/room_create.html', {'form': form})
 
 
-@user_passes_test(helper.is_realtor)
+@user_passes_test(helper.is_realtor, login_url='/')
 def house_create(request):
     if request.method == "POST":
         form = forms.HouseForm(request.POST, request.FILES)
@@ -111,3 +111,13 @@ def register(request):
     else:
         form = forms.RegistrationForm()
     return render(request, 'site_app/register.html', {'form': form})
+
+
+def approve(request, type_, id):
+    placements = {'rooms': models.Room, 'flats': models.Flat, 'houses': models.House}
+    model = placements[type_]
+    placement = get_object_or_404(model, id=id)
+    placement.is_approved = True
+    placement.save()
+    next = request.GET.get('next')
+    return redirect(next or reverse(index))
