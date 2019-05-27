@@ -71,7 +71,11 @@ class RealtorPlacement(models.Model):
 class Contract(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
     placement = models.ForeignKey(RealtorPlacement, on_delete=models.CASCADE, related_name="placement")
+    placement_type = models.CharField(max_length=25)
     is_approved = models.BooleanField(default=False)
+
+    def get_placement(self):
+        return getattr(self.placement, self.placement_type)
 
 
 class PrivateMessage(models.Model):

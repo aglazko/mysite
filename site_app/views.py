@@ -8,6 +8,7 @@ from . import helper
 from . import forms
 # Create your views here.
 
+PLACEMENTS = {'rooms': models.Room, 'flats': models.Flat, 'houses': models.House}
 
 def index(request):
     return render(request, 'site_app/index.html')
@@ -108,8 +109,7 @@ def house_create(request):
 
 @user_passes_test(lambda user: user.is_admin, login_url='/')
 def approve(request, type_, id):
-    placements = {'rooms': models.Room, 'flats': models.Flat, 'houses': models.House}
-    model = placements[type_]
+    model = PLACEMENTS[type_]
     placement = get_object_or_404(model, id=id)
     placement.is_approved = True
     placement.save()
@@ -188,4 +188,13 @@ def house_update(request, id):
 @user_passes_test(helper.is_normal_user)
 def contract_list(request):
     contracts = models.Contract.objects.filter(user=request.user)
-    return render(request, 'site_app/contract_list', {'contracts': contracts})
+    return render(request, 'site_app/contract_list.html', {'contracts': contracts})
+
+
+def contract_create(request, type_, id):
+    model = PLACEMENTS[type_]
+    place = get_object_or_404(model, id=id)
+    placement_type = type_.lower()
+    mapper = get_object_or_404(models.RealtorPlacement, **{placement_type: place})
+    models.Contract.create(user=request.user, placement=mapper, placement_type=placement_type)
+    return redirect(reverse(index))

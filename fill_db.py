@@ -45,7 +45,7 @@ def main():
     placement = models.RealtorPlacement.objects.create(realtor=realtor, house=house)
     models.RealtorPlacement.objects.create(realtor=realtor, room=room)
 
-    models.Contract.objects.create(user=user, placement=placement)
+    models.Contract.objects.create(user=user, placement=placement, placement_type='house')
 
 
 if __name__ == '__main__':
